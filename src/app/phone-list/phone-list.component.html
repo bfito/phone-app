@@ -1,3 +1,17 @@
 <p>
   phone-list works!
 </p>
+
+<a [routerLink]="['phone', 42]"> View Details </a>
+
+<div class="error" *ngIf="errorMessage"> {{ errorMessage }}</div>
+
+<div class="phone-list">
+  <div *ngFor= "let phone of phones">
+    <img [src]="phone.image">
+    <h3> {{ phone.name }} </h3>
+    <p> {{ phone.brand }} </p>
+    <a [routerLink]="['phone', phone._id]">
+      View Details </a>
+  </div>
+</div>

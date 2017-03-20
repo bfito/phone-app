@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PhoneListComponent } from './phone-list/phone-list.component';
 import { PhoneDetailsComponent } from './phone-details/phone-details.component';
+import { PhoneService } from './phone.service'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { PhoneDetailsComponent } from './phone-details/phone-details.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PhoneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
