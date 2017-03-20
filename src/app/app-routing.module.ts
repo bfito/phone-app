@@ -4,7 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    children: []
+    component: PhoneListComponent
+    // children: []
+  },
+  {
+    path: 'phone/:id',
+    component: PhoneDetailsComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
