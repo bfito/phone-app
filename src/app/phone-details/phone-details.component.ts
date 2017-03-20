@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhoneService } from '../phone.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-phone-details',
@@ -10,9 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PhoneDetailsComponent implements OnInit {
 
+  phone: Object;
+
   constructor(
     private myRoute: ActivatedRoute,
-    private myPhoneService: PhoneService
+    private myPhoneService: PhoneService,
+    private myNavigator: Router
   ) { }
 
   ngOnInit() {
@@ -24,12 +27,28 @@ export class PhoneDetailsComponent implements OnInit {
   getPhoneDetails(id) {
     // THIS WAS THE CODE BEFORE USING myRoute in ngOnInit
     this.myPhoneService.get(id)
-    .then((apiResult) => {
-      console.log(apiResult);
+    .then((thePhoneDetails) => {
+      this.phone = thePhoneDetails;
+      // console.log(thePhoneDetails);
     })
     .catch((err) => {
       console.log('ERROR', err);
     });
+  }
+
+  deletePhone() {
+    if (!window.confirm('Are you sure?')) {
+      return;
+    }
+    // console.log('Need to delete: ', this.phone['_id']);
+    this.myPhoneService.remove(this.phone['_id'])
+      .then((apiResult) => {
+        this.myNavigator.navigate(['']);
+        console.log(apiResult);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
   }
 
 }
