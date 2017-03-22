@@ -1,5 +1,7 @@
 <h2> PHONE DETAILS </h2>
 
+<div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
+
 <div *ngIf='phone'>
   <div class="phone-thumbnail">
     <img height="300" [src]="phone.image">

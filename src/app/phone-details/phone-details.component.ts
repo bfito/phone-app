@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PhoneDetailsComponent implements OnInit {
 
   phone: Object;
+  errorMessage: string = '';
 
   constructor(
     private myRoute: ActivatedRoute,
@@ -42,12 +43,14 @@ export class PhoneDetailsComponent implements OnInit {
     }
     // console.log('Need to delete: ', this.phone['_id']);
     this.myPhoneService.remove(this.phone['_id'])
-      .then((apiResult) => {
-        this.myNavigator.navigate(['']);
-        console.log(apiResult);
+      // .then((apiResult) => {
+      .then(() => {
+        this.myNavigator.navigate(['/']);
+        // console.log(apiResult);
       })
       .catch((err) => {
-        console.log('err', err);
+        this.errorMessage = 'Could not retrieve phone details. Try again later.'
+        // console.log('err', err);
       });
   }
 

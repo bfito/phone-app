@@ -14,6 +14,7 @@ const routes: Routes = [
     component: PhoneDetailsComponent
   },
   {
+    // this redirects from any other url entered and redirected to home
     path: '**',
     redirectTo: ''
   }

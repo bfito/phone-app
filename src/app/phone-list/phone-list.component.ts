@@ -15,9 +15,11 @@ export class PhoneListComponent implements OnInit {
   constructor(private myPhoneService: PhoneService) { }
 
   ngOnInit() {
+    // ajax request
     this.myPhoneService.getList()
       .then((phonesList) => {
         // console.log(apiResult);
+        // assignment in order to render the view
         this.phones = phonesList;
       })
       .catch((err) => {
